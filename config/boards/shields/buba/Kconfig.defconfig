@@ -1,0 +1,16 @@
+if SHIELD_BUBA_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "BUBA keyboard"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_BUBA_LEFT || SHIELD_BUBA_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif

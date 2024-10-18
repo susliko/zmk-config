@@ -1,0 +1,11 @@
+file_format: "1"
+id: buba
+name: BUBA keyboard 
+type: shield
+url: todo
+requires: [pro_micro]
+features:
+  - keys
+siblings:
+  - buba_left
+  - buba_right
