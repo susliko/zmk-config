@@ -8,56 +8,366 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define EN_DEFAULT 0
+#define RU_DEFAULT 1
+#define EN_SYMB 2
+#define RU_SYMB 3
+#define FUNC 4
+
+// TODO:
+// 1. Home row modifiers
+
 / {
-        macros {
-                zed_em_kay: zed_em_kay {
-                compatible = "zmk,behavior-macro";
-                #binding-cells = <0>;
-                bindings
-                        = <&to 1>
-                        , <&kp CAPSLOCK>
-                        ;
-                };
-
-
-                ru: ru {
-                compatible = "zmk,behavior-macro";
-                #binding-cells = <0>;
-                bindings
-                        = <&to 0>
-                        , <&kp CAPSLOCK>
-                        ;
-                };
+    macros {
+        en_to_ru: en_to_ru {
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings
+            = <&to RU_DEFAULT>
+            , <&kp CAPSLOCK>
+            ;
         };
 
-        keymap {
-                compatible = "zmk,keymap";
-
-                default_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-                        bindings = <
-             &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P   
-             &zed_em_kay &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &zed_em_kay
-             &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH
-                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
-                        >;
-                };
-                ru_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-                        bindings = <
-             &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp G   
-             &ru &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &ru
-             &kp P &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH
-                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
-                        >;
-                };
+        ru_to_en: ru_to_en {
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings
+            = <&to EN_DEFAULT>
+            , <&kp CAPSLOCK>
+            ;
         };
+    };
+
+    behaviors {
+        // ----- SPECIAL KEYS -----
+        q_esc: q_esc {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp Q>, <&kp ESC>;
+        };
+        a_tab: a_tab {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp A>, <&kp TAB>;
+        };
+
+        // ----- RUSSIAN KEYS THAT DIDN'T FIT -----
+        ze_ha: ze_ha {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp P>, <&kp LEFT_BRACKET>;
+        };
+        soft_hard_sign: hard_sign {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp M>, <&kp RIGHT_BRACKET>;
+        };
+        ye_yo: ye_yo {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp T>, <&kp BACKSLASH>;
+        };
+
+        // ----- SYMBOLS COMMON -----
+        minus_underscore: minus_underscore {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp MINUS>, <&kp UNDERSCORE>;
+        };
+        equal_plus: equal_plus {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp EQUAL>, <&kp PLUS>;
+        };
+        1_shifted: 1_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N1>, <&kp EXCLAMATION>;
+        };
+        9_shifted: 9_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N9>, <&kp LEFT_PARENTHESIS>;
+        };
+        0_shifted: 0_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N0>, <&kp RIGHT_PARENTHESIS>;
+        };
+        
+        // ----- SYMBOLS ENGLISH -----
+        en_ques_excl: en_question_exclamation {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp QUESTION>, <&kp EXCL>;
+        };
+        en_quotes: en_quotes {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp SINGLE_QUOTE>, <&kp DOUBLE_QUOTES>;
+        };
+        en_colons: en_colons {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp SEMICOLON>, <&kp COLON>;
+        };
+        en_left_brac: en_left_bracet_left_brace {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LEFT_BRACKET>, <&kp LEFT_BRACE>;
+        };
+        en_right_brac: en_right_bracet_right_brace {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp RIGHT_BRACKET>, <&kp RIGHT_BRACE>;
+        };
+        en_slash_ques: en_slash_ques {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp SLASH>, <&kp QUESTION>;
+        };
+        en_backslash_pipe: en_backslash_pipe {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp BACKSLASH>, <&kp PIPE>;
+        };
+        en_lt_gt: en_lt_gt {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LT>, <&kp GT>;
+        };
+        en_grave_tilde: en_grave_tilde {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp GRAVE>, <&kp TILDE>;
+        };
+        en_2_shifted: en_2_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N2>, <&kp AT>;
+        };
+        en_3_shifted: en_3_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N3>, <&kp HASH>;
+        };
+        en_4_shifted: en_4_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N4>, <&kp DOLLAR>;
+        };
+        en_5_shifted: en_5_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N5>, <&kp PERCENT>;
+        };
+        en_6_shifted: en_6_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N6>, <&kp CARET>;
+        };
+        en_7_shifted: en_7_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N7>, <&kp AMPERSAND>;
+        };
+        en_8_shifted: en_8_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N8>, <&kp ASTERISK>;
+        };
+
+        // ----- SYMBOLS RUSSIAN -----
+        ru_ques_excl: ru_question_exclamation {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(SLASH)>, <&kp LS(N1)>;
+        };
+        ru_quotes: ru_quotes {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(N2)>, <&kp LS(N2)>;  // TODO: implement single quote
+        };
+        ru_colons: ru_colons {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(N8)>, <&kp LS(N5)>;
+        };
+        ru_left_brac: ru_left_bracet_left_brace {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(GRAVE)>, <&kp LEFT_BRACE>;  // TODO: implement left brace
+        };
+        ru_right_brac: ru_right_bracet_right_brace {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp GRAVE>, <&kp RIGHT_BRACE>;  // TODO: implement right brace
+        };
+        ru_slash_ques: ru_slash_ques {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp SLASH>, <&kp LS(SLASH)>;
+        };
+        ru_backslash_pipe: ru_backslash_pipe {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp BACKSLASH>, <&kp PIPE>;  // TODO: implement?
+        };
+        ru_lt_gt: ru_lt_gt {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LS(NUBS)>, <&kp NUBS>;
+        };
+        ru_grave_tilde: ru_grave_tilde {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp GRAVE>, <&kp TILDE>;  // TODO: implement?
+        };
+        ru_2_shifted: ru_2_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N2>, <&kp AT>;  // TODO: implement AT
+        };
+        ru_3_shifted: ru_3_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N3>, <&kp HASH>;  // TODO: implement hash
+        };
+        ru_4_shifted: ru_4_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N4>, <&kp DOLLAR>;  // TODO: implement dollar
+        };
+        ru_5_shifted: ru_5_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N5>, <&kp LS(N4)>;
+        };
+        ru_6_shifted: ru_6_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N6>, <&kp CARET>;  // TODO: implement CARET
+        };
+        ru_7_shifted: ru_7_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N7>, <&kp AMPERSAND>;  // TODO: implement AMPERSAND
+        };
+        ru_8_shifted: ru_8_shifted {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N8>, <&kp ASTERISK>;  // TODO: implement ASTERISK
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+        en_default {
+            // +------------------------------------------------------------------+
+            // |Q→ESC|  W  |  E  |  R  |  T  |     |  Y  |  U   |  I  |  O  |  P  |
+            // |A→TAB|  S  |  D  |  F  |  G  |     |  H  |  J   |  K  |  L  |  ;  |
+            // |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M   |  ,  |  .  |  /  |
+            //
+            //       | LANG | SPC/SYMB | CMD |     | BSPC | ENT/SYMB | FUNC |
+            // +------------------------------------------------------------------+
+            bindings = <
+                &q_esc   &kp W   &kp E   &kp R   &kp T               &kp Y   &kp U   &kp I      &kp O    &kp P   
+                &a_tab   &kp S   &kp D   &kp F   &kp G               &kp H   &kp J   &kp K      &kp L    &kp SEMI
+                &kp Z    &kp X   &kp C   &kp V   &kp B               &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH
+        
+                &en_to_ru   &lt EN_SYMB SPACE   &kp LGUI     &kp BSPC   &lt EN_SYMB ENT   &mo FUNC
+            >;
+        };
+
+
+        ru_default {
+            // +-----------------------------------------------------------------+
+            // |Й→ESC|  Ц  |  У  |  К  | Е→Ё |     |  Н  |  Г  |  Ш  |  Щ  | З→Х |
+            // |Ф→TAB|  Ы  |  В  |  А  |  П  |     |  Р  |  О  |  Л  |  Д  |  Ж  |
+            // |  Я  |  Ч  |  С  |  М  |  И  |     |  Т  | Ь→Ъ |  Б  |  Ю  |  Э  |
+            //
+            //       | LANG | SPC→SYMB | CMD |     | BSPC | ENT→SYMB | FUNC |
+            // +-----------------------------------------------------------------+
+            bindings = <
+                &q_esc   &kp W   &kp E   &kp R   &ye_yo              &kp Y   &kp U            &kp I      &kp O    &ze_ha
+                &a_tab   &kp S   &kp D   &kp F   &kp G               &kp H   &kp J            &kp K      &kp L    &kp SEMI
+                &kp Z    &kp X   &kp C   &kp V   &kp B               &kp N   &soft_hard_sign  &kp COMMA  &kp DOT  &kp SINGLE_QUOTE
+        
+                &ru_to_en   &lt RU_SYMB SPACE   &kp LGUI     &kp BSPC   &lt RU_SYMB ENT   &mo FUNC
+            >;
+        };
+
+
+        en_symb {
+            // +-----------------------------------------------------------------+
+            // |     | 7→& | 8→* | 9→( | 0→) |     |     |     |     |     |     |
+            // | <→> | 4→$ | 5→% | 6→^ | -→_ |     | ?→! |  ,  | '→" | [→{ | ]→} |
+            // | `→~ | 1→! | 2→@ | 3→# | =→+ |     |  @  |  .  | ;→: | /→? | \→| |
+            //
+            //             |     | SPC | CMD |     | BSPC | ENT |     |
+            // +-----------------------------------------------------------------+
+            bindings = <
+                &kp SPACE         &en_7_shifted   &en_8_shifted   &9_shifted      &0_shifted               &kp SPACE       &kp SPACE   &kp SPACE    &kp SPACE        &kp SPACE   
+                &en_lt_gt         &en_4_shifted   &en_5_shifted   &en_6_shifted   &minus_underscore        &en_ques_excl   &kp COMMA   &en_quotes   &en_left_brac    &en_right_brac
+                &en_grave_tilde   &1_shifted      &en_2_shifted   &en_3_shifted   &equal_plus              &kp AT          &kp DOT     &en_colons   &en_slash_ques   &en_backslash_pipe
+        
+                &kp SPACE   &kp SPACE   &kp LGUI     &kp BSPC   &kp ENT   &kp SPACE
+            >;
+        };
+
+
+        ru_symb {
+            // SAME LAYOUT AS en_symb, BUT FOR RU OS LAYOUT
+            // TODO: implement at
+            bindings = <
+                &kp SPACE         &ru_7_shifted   &ru_8_shifted   &9_shifted      &0_shifted               &kp SPACE       &kp SPACE    &kp SPACE    &kp SPACE        &kp SPACE   
+                &ru_lt_gt         &ru_4_shifted   &ru_5_shifted   &ru_6_shifted   &minus_underscore        &ru_ques_excl   &kp LS(N6)   &ru_quotes   &ru_left_brac    &ru_right_brac
+                &ru_grave_tilde   &1_shifted      &ru_2_shifted   &ru_3_shifted   &equal_plus              &kp AT          &kp LS(N7)   &ru_colons   &ru_slash_ques   &ru_backslash_pipe
+        
+                &kp SPACE   &kp SPACE   &kp LGUI     &kp BSPC   &kp ENT   &kp SPACE
+            >;
+        };
+    };
 };
