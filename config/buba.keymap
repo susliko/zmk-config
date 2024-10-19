@@ -318,7 +318,7 @@
                 &a_tab   &kp S   &kp D   &kp F   &kp G               &kp H   &kp J   &kp K      &kp L    &kp SEMI
                 &kp Z    &kp X   &kp C   &kp V   &kp B               &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH
                 //&en_to_ru   &lt EN_SYMB SPACE   &kp LGUI     &kp BSPC   &lt EN_SYMB ENT   &mo FUNC
-                &en_to_ru  &lt EN_SYMB  &none  &none  &none  &none  
+                &en_to_ru  &lt EN_SYMB SPACE  &none  &none  &none  &none  
             >;
         };
 
