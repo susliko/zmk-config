@@ -364,17 +364,24 @@
                 &ru_lt_gt         &ru_4_shifted   &ru_5_shifted   &ru_6_shifted   &minus_underscore       &ru_ques_excl   &kp LS(N6)   &ru_quotes   &ru_left_brac    &ru_right_brac
                 &ru_grave_tilde   &n1_shifted     &ru_2_shifted   &ru_3_shifted   &equal_plus             &kp AT          &kp LS(N7)   &ru_colons   &ru_slash_ques   &ru_backslash_pipe
         
-                &trans   &kp SPACE   &kp LGUI     &kp BSPC   &kp ENT   &trans
+                &none   &kp SPACE   &kp LGUI     &kp BSPC   &kp ENT   &none
             >;
         };
 
         func {
+            // +-----------------------------------------------------------------+
+            // |     |     |     |     |     |       |     |     |     |     |  LOCK  |
+            // |     |     |     |     |     |       |  ←  |  ↓  |  ↑  |  →  | SCREEN |
+            // |     |     |     |     |     |       |  ⇇  |  ↵  |  ↳  |  ⇉  |        |
+            //
+            //             |     | SPC | CMD |       | BSPC | ENT |     |
+            // +-----------------------------------------------------------------+
             bindings = <
-                &none   &none   &none   &none   &none        &none          &none      &none    &none        &none   
-                &none   &none   &none   &none   &none        &kp LEFT       &kp DOWN   &kp UP   &kp RIGHT    &none
+                &none   &none   &none   &none   &none        &none          &none      &none    &none        &kp LG(LC(Q))   
+                &none   &none   &none   &none   &none        &kp LEFT       &kp DOWN   &kp UP   &kp RIGHT    &kp LG(LS(N4))
                 &none   &none   &none   &none   &none        &kp LA(LEFT)   &kp HOME   &kp END  &kp LA(RIGHT)   &none
         
-                &trans   &kp SPACE   &kp LGUI     &kp BSPC   &kp ENT   &trans
+                &none   &kp SPACE   &kp LGUI     &kp BSPC   &kp ENT   &none
             >;
         };
     };
