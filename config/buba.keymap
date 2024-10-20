@@ -75,13 +75,13 @@
             tapping-term-ms = <200>;
             bindings = <&kp M>, <&kp RIGHT_BRACKET>;
         };
-        ye_yo: ye_yo {
+        ht_let: hold_tap_letter {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <250>;
             quick-tap-ms = <0>;
-            bindings = <&kp T>, <&kp BACKSLASH>;
+            bindings = <&kp>, <&kp>;
         };
         // ye_yo: ye_yo {
         //     compatible = "zmk,behavior-tap-dance";
@@ -349,9 +349,9 @@
             //       | LANG | SPC→symb | CMD |     | ENT→func | SPC→symb | BSPC |
             // +-----------------------------------------------------------------+
             bindings = <
-                &q_esc        &kp W        &kp E        &kp R         &ye_yo              &kp Y  &kp U            &kp I        &kp O        &ze_ha
-                &a_tab        &hrm LALT S  &hrm LGUI D  &hrm LSHFT F  &kp G               &kp H  &hrm LSHFT J     &hrm LGUI K  &hrm LALT L  &hrm LCTRL SEMI
-                &hrm LCTRL Z  &kp X        &kp C        &kp V         &kp B               &kp N  &soft_hard_sign  &kp COMMA    &kp DOT      &kp SINGLE_QUOTE
+                &q_esc        &kp W        &kp E        &kp R         &ht_let T BSLH       &kp Y  &kp U            &kp I        &kp O        &ze_ha
+                &a_tab        &hrm LALT S  &hrm LGUI D  &hrm LSHFT F  &kp G                &kp H  &hrm LSHFT J     &hrm LGUI K  &hrm LALT L  &hrm LCTRL SEMI
+                &hrm LCTRL Z  &kp X        &kp C        &kp V         &kp B                &kp N  &soft_hard_sign  &kp COMMA    &kp DOT      &kp SINGLE_QUOTE
                 
                 &ru_to_en   &lt RU_SYMB SPACE   &kp LGUI            &lt FUNC ENTER   &lt RU_SYMB SPACE   &kp BSPC
             >;
