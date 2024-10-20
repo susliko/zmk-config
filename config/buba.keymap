@@ -15,9 +15,6 @@
 #define FUNC 4
 #define F_KEYS 5
 
-// TODO:
-// 1. Home row modifiers
-
 / {
     macros {
         en_to_ru: en_to_ru {
@@ -79,11 +76,19 @@
             bindings = <&kp M>, <&kp RIGHT_BRACKET>;
         };
         ye_yo: ye_yo {
-            compatible = "zmk,behavior-tap-dance";
+            compatible = "zmk,behavior-hold-tap";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <250>;
+            quick-tap-ms = <-1>;
             bindings = <&kp T>, <&kp BACKSLASH>;
         };
+        // ye_yo: ye_yo {
+        //     compatible = "zmk,behavior-tap-dance";
+        //     #binding-cells = <0>;
+        //     tapping-term-ms = <200>;
+        //     bindings = <&kp T>, <&kp BACKSLASH>;
+        // };
 
         // ----- SYMBOLS COMMON -----
         minus_underscore: minus_underscore {
