@@ -308,18 +308,18 @@
         
         en_default {
             // +------------------------------------------------------------------+
-            // |Q→ESC|  W  |  E  |  R  |  T  |     |  Y  |  U   |  I  |  O  |  P  |
-            // |A→TAB|  S  |  D  |  F  |  G  |     |  H  |  J   |  K  |  L  |  ;  |
-            // |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M   |  ,  |  .  |  /  |
+            // |Q→ESC|  W  |  E  |  R  |  T  |     |  Y  |  U  |  I  |  O  |  P  |
+            // |A→TAB|  S  |  D  |  F  |  G  |     |  H  |  J  |  K  |  L  |  ;  |
+            // |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M  |  ,  |  .  |  /  |
             //
-            //       | LANG | SPC/SYMB | CMD |     | BSPC | ENT/SYMB | FUNC |
+            //       | LANG | SPC→symb | CMD |     | ENT→func | SPC→symb | BSPC |
             // +------------------------------------------------------------------+
             bindings = <
                 &q_esc   &kp W   &kp E   &kp R   &kp T               &kp Y   &kp U   &kp I      &kp O    &kp P   
                 &a_tab   &kp S   &kp D   &kp F   &kp G               &kp H   &kp J   &kp K      &kp L    &kp SEMI
                 &kp Z    &kp X   &kp C   &kp V   &kp B               &kp N   &kp M   &kp COMMA  &kp DOT  &kp FSLH
                 
-                &en_to_ru   &lt EN_SYMB SPACE   &kp LGUI     &kp BSPC   &lt EN_SYMB ENTER   &mo FUNC
+                &en_to_ru   &lt EN_SYMB SPACE   &kp LGUI           &lt FUNC ENTER   &lt EN_SYMB SPACE   &kp BSPC
             >;
         };
 
@@ -329,14 +329,14 @@
             // |Ф→TAB|  Ы  |  В  |  А  |  П  |     |  Р  |  О  |  Л  |  Д  |  Ж  |
             // |  Я  |  Ч  |  С  |  М  |  И  |     |  Т  | Ь→Ъ |  Б  |  Ю  |  Э  |
             //
-            //       | LANG | SPC→SYMB | CMD |     | BSPC | ENT→SYMB | FUNC |
+            //       | LANG | SPC→symb | CMD |     | ENT→func | SPC→symb | BSPC |
             // +-----------------------------------------------------------------+
             bindings = <
                 &q_esc   &kp W   &kp E   &kp R   &ye_yo              &kp Y   &kp U            &kp I      &kp O    &ze_ha
                 &a_tab   &kp S   &kp D   &kp F   &kp G               &kp H   &kp J            &kp K      &kp L    &kp SEMI
                 &kp Z    &kp X   &kp C   &kp V   &kp B               &kp N   &soft_hard_sign  &kp COMMA  &kp DOT  &kp SINGLE_QUOTE
                 
-                &ru_to_en   &lt RU_SYMB SPACE   &kp LGUI     &kp BSPC   &lt RU_SYMB ENTER   &mo FUNC
+                &ru_to_en   &lt RU_SYMB SPACE   &kp LGUI            &lt FUNC ENTER   &lt RU_SYMB SPACE   &kp BSPC
             >;
         };
 
@@ -346,26 +346,26 @@
             // | <→> | 4→$ | 5→% | 6→^ | -→_ |     | ?→! |  ,  | '→" | [→{ | ]→} |
             // | `→~ | 1→! | 2→@ | 3→# | =→+ |     |  @  |  .  | ;→: | /→? | \→| |
             //
-            //             |     | SPC | CMD |     | BSPC | ENT |     |
+            //             | ↓↓↓ | SPC | ↓↓↓ |     | ENT | SPC | BSPC |
             // +-----------------------------------------------------------------+
             bindings = <
                 &none             &en_7_shifted   &en_8_shifted   &n9_shifted     &n0_shifted             &none           &none       &none        &none            &none   
                 &en_lt_gt         &en_4_shifted   &en_5_shifted   &en_6_shifted   &minus_underscore       &en_ques_excl   &kp COMMA   &en_quotes   &en_left_brac    &en_right_brac
                 &en_grave_tilde   &n1_shifted     &en_2_shifted   &en_3_shifted   &equal_plus             &kp AT          &kp DOT     &en_colons   &en_slash_ques   &en_backslash_pipe
                 
-                &trans   &kp SPACE   &kp LGUI     &kp BSPC   &kp ENTER   &trans
+                &trans   &kp SPACE   &trans       &kp ENTER   &kp SPACE   &kp BSPC
             >;
         };
 
         ru_symb {
-            // SAME LAYOUT AS en_symb, BUT FOR RU OS LAYOUT
+            // SAME LAYOUT AS en_symb, BUT ADOPTED FOR RU OS LAYOUT
             // TODO: implement at
             bindings = <
                 &none             &ru_7_shifted   &ru_8_shifted   &n9_shifted     &n0_shifted             &none           &none        &none        &none            &none
                 &ru_lt_gt         &ru_4_shifted   &ru_5_shifted   &ru_6_shifted   &minus_underscore       &ru_ques_excl   &kp LS(N6)   &ru_quotes   &ru_left_brac    &ru_right_brac
                 &ru_grave_tilde   &n1_shifted     &ru_2_shifted   &ru_3_shifted   &equal_plus             &kp AT          &kp LS(N7)   &ru_colons   &ru_slash_ques   &ru_backslash_pipe
                 
-                &none   &kp SPACE   &kp LGUI     &kp BSPC   &kp ENTER   &none
+                &trans   &kp SPACE   &trans       &kp ENTER   &kp SPACE   &kp BSPC
             >;
         };
 
@@ -375,14 +375,14 @@
             // |     |     | PP | VOL↑ | BR↑ |       |  ←  |  ↓  |  ↑  |  →  | SCREEN |
             // |     |     |    | VOL↓ | BR↓ |       |  ⇇  |  ↵  |  ↳  |  ⇉  |        |
             //
-            //            |F_KEYS|     |     |       |     |     |     |
+            //            |     |     |F_KEYS|       |     |     |     |
             // +-----------------------------------------------------------------------+
             bindings = <
                 &none   &none   &none             &kp C_MUTE     &none               &none          &none      &none    &none           &kp LG(LC(Q))   
                 &none   &none   &kp C_PLAY_PAUSE  &kp C_VOL_UP   &kp C_BRI_UP        &kp LEFT       &kp DOWN   &kp UP   &kp RIGHT       &kp LG(LS(N4))
                 &none   &none   &none             &kp C_VOL_DN   &kp C_BRI_DN        &kp LA(LEFT)   &kp HOME   &kp END  &kp LA(RIGHT)   &none
                 
-                &mo F_KEYS   &none   &none        &none   &none   &none
+                                                   &none   &none   &mo F_KEYS        &none   &none   &none
             >;
         };
 
