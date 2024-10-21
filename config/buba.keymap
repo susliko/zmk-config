@@ -58,14 +58,14 @@
             flavor = "tap-preferred";
             tapping-term-ms = <150>;
             quick-tap-ms = <0>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&caps_word>, <&kp>;
         };
 
         f_shft_caps: F_hold_SHIFT_doubletap_CAPS_WORD {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <150>;
-            bindings = <&hrm LSHFT F>, <&hold_caps_word LCTRL F>;
+            bindings = <&hrm LSHFT F>, <&hold_caps_word A F>;
         };
         
         // ----- SPECIAL KEYS -----
