@@ -152,6 +152,13 @@
         };
         
         // ----- SYMBOLS ENGLISH -----
+        symb_td: symbol_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+
         en_ques_excl: en_question_exclamation {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -396,7 +403,7 @@
             // +-----------------------------------------------------------------+
             bindings = <
                 &none             &en_7_shifted   &en_8_shifted   &n9_shifted     &n0_shifted             &none           &none       &none        &none            &none   
-                &en_lt_gt         &en_4_shifted   &en_5_shifted   &en_6_shifted   &minus_underscore       &en_ques_excl   &kp COMMA   &en_colons   &en_left_brac    &en_right_brac
+                &en_lt_gt         &en_4_shifted   &en_5_shifted   &en_6_shifted   &minus_underscore       &symb_td QUESTION EXCL   &kp COMMA   &en_colons   &en_left_brac    &en_right_brac
                 &en_grave_tilde   &n1_shifted     &en_2_shifted   &en_3_shifted   &equal_plus             &kp AT          &kp DOT     &en_quotes   &en_slash_ques   &en_backslash_pipe
                 
                 &to RU_DEFAULT   &kp SPACE   &trans       &kp ENTER   &kp SPACE   &kp BSPC
