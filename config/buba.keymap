@@ -394,7 +394,7 @@
             // +-----------------------------------------------------------------+
             bindings = <
                 &q_esc        &kp W        &kp E        &kp R         &ht_let BSLH T       &kp Y  &kp U            &kp I        &kp O        &ze_ha
-                &a_tab        &hrm LALT S  &hrm LGUI D  &hrm LSHFT F  &kp G                &kp H  &hrm LSHFT J     &hrm LGUI K  &hrm LALT L  &hrm LCTRL SEMI
+                &a_tab        &hrm LALT S  &hrm LGUI D  &f_shft_caps  &kp G                &kp H  &hrm LSHFT J     &hrm LGUI K  &hrm LALT L  &hrm LCTRL SEMI
                 &hrm LCTRL Z  &kp X        &kp C        &kp V         &kp B                &kp N  &soft_hard_sign  &kp COMMA    &kp DOT      &kp SINGLE_QUOTE
                 
                 &ru_to_en   &lt RU_SYMB SPACE   &kp LGUI            &lt FUNC ENTER   &lt RU_SYMB SPACE   &kp BSPC
