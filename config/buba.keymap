@@ -21,7 +21,7 @@
 
 / {
     macros {
-        en_to_ru_full: en_to_ru_full {
+        en_to_ru_switch_kb_and_os: en_to_ru_switch_kb_and_os {
         compatible = "zmk,behavior-macro";
         #binding-cells = <0>;
         bindings
@@ -30,7 +30,7 @@
             ;
         };
 
-        ru_to_en_full: ru_to_en_full {
+        ru_to_en_switch_kb_and_os: ru_to_en_switch_kb_and_os {
         compatible = "zmk,behavior-macro";
         #binding-cells = <0>;
         bindings
@@ -52,18 +52,29 @@
     
     behaviors {
         // ----- LANGUAGE SWITCH -----
+        // tap - toggle layout on keyboard and OS
+        // double tap - switch keyboard to EN layout
+        // triple tap - switch keyboard to RU layout
         en_to_ru: en_to_ru {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&en_to_ru_full>, <&to RU_DEFAULT>;
+            bindings 
+                = <&en_to_ru_switch_kb_and_os>
+                , <&none>
+                , <&to RU_DEFAULT>
+                ;
         };
 
         ru_to_en: ru_to_en {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&ru_to_en_full>, <&to EN_DEFAULT>;
+            bindings
+                = <&ru_to_en_switch_kb_and_os>
+                , <&to EN_DEFAULT>
+                , <&none>
+                ;
         };
 
         // ----- HOME ROW MODIFIERS -----
@@ -432,16 +443,16 @@
 
         func {
             // +-----------------------------------------------------------------------+
-            // |     |     |    | MUTE |     |       |     |     |     |     |  LOCK  |
-            // |     |     | PP | VOL↑ | BR↑ |       |  ←  |  ↓  |  ↑  |  →  | SCREEN |
-            // |     |     |    | VOL↓ | BR↓ |       |  ⇇  |  ↵  |  ↳  |  ⇉  |        |
+            // |     |     |    | MUTE |     |       |     |     |     |     |   LOCK   |
+            // |     |     | PP | VOL↑ | BR↑ |       |  ←  |  ↓  |  ↑  |  →  |SCREENSHOT|
+            // |     |     |    | VOL↓ | BR↓ |       |  ⇇  |  ↵  |  ↳  |  ⇉  | SOFT OFF |
             //
             //            |     |     |F_KEYS|       |     |     |     |
             // +-----------------------------------------------------------------------+
             bindings = <
                 &none   &none   &none             &kp C_MUTE     &none               &none          &none      &none    &none           &kp LG(LC(Q))   
                 &none   &none   &kp C_PLAY_PAUSE  &kp C_VOL_UP   &kp C_BRI_UP        &kp LEFT       &kp DOWN   &kp UP   &kp RIGHT       &kp LG(LS(N4))
-                &none   &none   &none             &kp C_VOL_DN   &kp C_BRI_DN        &kp LA(LEFT)   &kp HOME   &kp END  &kp LA(RIGHT)   &none
+                &none   &none   &none             &kp C_VOL_DN   &kp C_BRI_DN        &kp LA(LEFT)   &kp HOME   &kp END  &kp LA(RIGHT)   &soft_off
                 
                                                    &none   &none   &mo F_KEYS        &none   &none   &none
             >;
